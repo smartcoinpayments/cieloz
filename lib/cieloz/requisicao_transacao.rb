@@ -57,7 +57,7 @@ class Cieloz::RequisicaoTransacao < Cieloz::Requisicao
     txn = new source: source, opts: opts, dados_portador: portador,
       dados_pedido: pedido, forma_pagamento: pagamento, dados_avs: avs,
       campo_livre: campo_livre, url_retorno: url, gerar_token: gerar,
-      dados_ec: Cieloz::Configuracao.credenciais
+      dados_ec: @dados_ec#Cieloz::Configuracao.credenciais
 
     capturar ||= Cieloz::Configuracao.captura_automatica
 

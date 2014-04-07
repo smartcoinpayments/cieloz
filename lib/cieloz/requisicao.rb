@@ -34,14 +34,15 @@ class Cieloz::Requisicao
     end
   end
 
-  def submit
-    @dados_ec = Cieloz::Configuracao.credenciais
+  def submit host, dados_ec=nil
+    @dados_ec = dados_ec
+    @dados_ec = Cieloz::Configuracao.credenciais unless dados_ec
 
     if valid?
       @id     = SecureRandom.uuid if id.blank?
       @versao = "1.2.1"           if versao.blank?
 
-      http = Net::HTTP.new Cieloz::Configuracao.host, 443
+      http = Net::HTTP.new host, 443
       http.use_ssl = true
       http.open_timeout = 5 * 1000
       http.read_timeout = 30 * 1000

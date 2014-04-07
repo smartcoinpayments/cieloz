@@ -17,7 +17,7 @@ describe Cieloz::RequisicaoTransacao do
   }
 
   it "serializes dados-ec" do
-    subject.submit # @dados_ec is set on submission
+    subject.submit Cieloz::Homologacao::HOST # @dados_ec is set on submission
     assert_equal expected_xml(opts) { xml_for :ec, dir, binding }, subject.to_xml
   end
 
@@ -81,7 +81,7 @@ describe Cieloz::RequisicaoTransacao do
       subject.campo_livre = "debug"
 
       VCR.use_cassette "requisicao_transacao_test_request_posting" do
-        res = subject.submit
+        res = subject.submit Cieloz::Homologacao::HOST
 
         assert_equal({}, subject.errors.messages)
         assert_equal Cieloz::Requisicao::Transacao, res.class
