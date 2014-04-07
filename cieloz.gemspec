@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'cieloz/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "cieloz"
+  gem.name          = "cieloz_sc"
   gem.version       = Cieloz::VERSION
   gem.authors       = ["Fábio Luiz Nery de Miranda"]
   gem.email         = ["fabio@miranti.net.br"]

@@ -85,7 +85,9 @@ describe Cieloz::Configuracao do
 
     it "returns production host when credenciais is set" do
       _.credenciais = _hash
-      _.host.must_equal Cieloz::Configuracao::HOST
+      _.host.wont_equal Cieloz::Configuracao::HOST
+      _.env = :homolog
+      _.env.must_equal :homolog
     end
   end
 end

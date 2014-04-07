@@ -45,7 +45,7 @@ describe Cieloz::Requisicao do
 
     it "serializes" do
       subject.stub :valid?, false do # avoid http request
-        subject.submit # @dados_ec is set on submission
+        subject.submit ec # @dados_ec is set on submission
       end
       assert_equal xml, subject.to_xml
     end
@@ -55,7 +55,7 @@ describe Cieloz::Requisicao do
     it "sends to test web service" do
       Cieloz::Configuracao.reset!
       VCR.use_cassette 'requisicao_test_request_posting' do
-        res = subject.submit
+        res = subject.submit Cieloz::Homologacao::HOST
 
         assert_equal({}, subject.errors.messages)
         refute_nil res.codigo

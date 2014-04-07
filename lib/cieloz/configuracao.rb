@@ -11,8 +11,9 @@ module Cieloz
     @@captura_automatica  = false
     @@credenciais         = nil
     @@dados_ec            = nil
+    @@env                 = :homolog
 
-    mattr_writer :credenciais, :captura_automatica
+    mattr_writer :credenciais, :captura_automatica, :env
     mattr_accessor :url_retorno, :soft_descriptor
     mattr_accessor :max_parcelas, :max_adm_parcelas, :moeda, :idioma
 
@@ -49,7 +50,7 @@ module Cieloz
     end
 
     def self.host
-      @@credenciais ? HOST : Homologacao::HOST
+      (env == :prod) ? HOST : Homologacao::HOST
     end
 
     def self.path
@@ -62,6 +63,10 @@ module Cieloz
 
     def self.captura_automatica
       !!@@captura_automatica
+    end
+
+    def self.env
+      @@env
     end
   end
 end
