@@ -45,7 +45,7 @@ class Cieloz::Requisicao
       http.use_ssl = true
       http.open_timeout = 5 * 1000
       http.read_timeout = 30 * 1000
-      http.ssl_version = :SSLv3 #http://stackoverflow.com/questions/11321403/openssl-trouble-with-ruby-1-9-3
+      http.ssl_version = :SSLv23 #http://stackoverflow.com/questions/11321403/openssl-trouble-with-ruby-1-9-3
 
       parse http.post Cieloz::Configuracao.path, "mensagem=#{to_xml}"
     end
